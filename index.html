@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THI THỬ VSTEP CÙNG MISS NGUYỆT</title>
+    <!-- Google Fonts: Plus Jakarta Sans for premium modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for beautiful icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Core styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 0: EXAM PASSWORD UNLOCK GATE        -->
+    <!-- ========================================== -->
+    <div id="lock-screen" class="lock-screen-overlay active">
+        <div class="lock-card glass-card">
+            <div class="lock-header">
+                <div class="lock-icon-circle">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h2>Mở Khóa Đề Thi VSTEP</h2>
+                <p>Nhập mã đề thi và mật khẩu tương ứng để vào phòng thi</p>
+            </div>
+            
+            <div class="lock-form">
+                <!-- 1. Tài khoản -->
+                <div class="form-group">
+                    <label for="lock-test-id"><i class="fa-solid fa-user-lock"></i> Tài khoản:</label>
+                    <select id="lock-test-id" class="lock-select">
+                        <option value="VSTEP01">VSTEP01</option>
+                        <option value="VSTEP02">VSTEP02</option>
+                        <option value="VSTEP03">VSTEP03</option>
+                    </select>
+                </div>
+
+                <!-- 2. Mật khẩu -->
+                <div class="form-group">
+                    <label for="lock-password"><i class="fa-solid fa-key"></i> Mật khẩu:</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="lock-password" class="lock-input" placeholder="Nhập mật khẩu..." autofocus>
+                        <button type="button" id="btn-toggle-lock-pwd" class="toggle-pwd-btn">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Họ và Tên -->
+                <div class="form-group">
+                    <label for="lock-student-name"><i class="fa-solid fa-user"></i> Họ và Tên:</label>
+                    <input type="text" id="lock-student-name" class="lock-input" placeholder="Nhập họ và tên của bạn..." value="Nguyệt Phạm" required>
+                </div>
+
+                <!-- 4. Lớp -->
+                <div class="form-group">
+                    <label for="lock-student-class"><i class="fa-solid fa-users"></i> Lớp:</label>
+                    <input type="text" id="lock-student-class" class="lock-input" placeholder="Nhập lớp học của bạn... (ví dụ: 12A1)" value="12A1" required>
+                </div>
+                
+                <div id="lock-error-msg" class="lock-error-msg" style="display:none;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="lock-error-text">Mật khẩu không chính xác!</span>
+                </div>
+                
+                <button id="btn-unlock-exam" class="btn btn-primary btn-full ripple">
+                    <i class="fa-solid fa-door-open"></i> Vào phòng thi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <!-- ========================================== -->
+        <!-- SCREEN 1: PREPARATION & SYSTEM CHECK       -->
+        <!-- ========================================== -->
+        <div id="prep-screen" class="screen">
+            <header class="prep-header">
+                <div class="logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>THI THỬ VSTEP CÙNG MISS NGUYỆT</span>
+                </div>
+                <h1>Cấu Hình Hệ Thống & Kiểm Tra Thiết Bị</h1>
+                <p class="subtitle">Vui lòng hoàn thành các bước kiểm tra camera và âm thanh dưới đây trước khi nhận đề thi</p>
+            </header>
+
+            <div class="prep-grid">
+                <!-- Column 1 (Left): VSTEP Structure (Step 1) -->
+                <div class="glass-card rules-card">
+                    <div class="card-badge"><span class="badge-num">1</span> Cấu trúc bài thi</div>
+                    
+                    <div class="structure-list">
+                        <div class="structure-item">
+                            <i class="fa-solid fa-headphones text-violet"></i>
+                            <div class="struct-details">
+                                <span class="struct-title">Kỹ năng 1: NGHE</span>
+                                <span class="struct-meta">3 phần (47')</span>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <i class="fa-solid fa-book-open text-emerald"></i>
+                            <div class="struct-details">
+                                <span class="struct-title">Kỹ năng 2: ĐỌC</span>
+                                <span class="struct-meta">4 phần (60')</span>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <i class="fa-solid fa-pen-nib text-amber"></i>
+                            <div class="struct-details">
+                                <span class="struct-title">Kỹ năng 3: VIẾT</span>
+                                <span class="struct-meta">2 phần (60')</span>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <i class="fa-solid fa-microphone-lines text-pink"></i>
+                            <div class="struct-details">
+                                <span class="struct-title">Kỹ năng 4: NÓI</span>
+                                <span class="struct-meta">3 phần (12')</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2 (Center): Candidate Info (Top) & Device Check (Bottom) -->
+                <div class="prep-center-column">
+                    
+                    <!-- Candidate Info Card (Center Top) -->
+                    <div class="glass-card profile-center-card">
+                        <div class="card-badge"><span class="badge-num">1</span> Thông tin thí sinh</div>
+                        
+                        <div class="profile-flex-container">
+                            <!-- Left: Camera Preview and CHỤP HÌNH button -->
+                            <div class="profile-photo-column">
+                                <div class="avatar-container">
+                                    <video id="webcam-preview" autoplay playsinline muted></video>
+                                    <canvas id="snapshot-canvas" style="display:none;"></canvas>
+                                    <img id="candidate-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="Avatar Placeholder">
+                                    <div id="camera-overlay" class="camera-overlay">
+                                        <i class="fa-solid fa-camera"></i>
+                                        <span>Camera Sẵn Sàng</span>
+                                    </div>
+                                </div>
+                                <button id="btn-take-photo" class="btn btn-danger btn-full ripple">
+                                    <i class="fa-solid fa-camera"></i> CHỤP HÌNH
+                                </button>
+                            </div>
+                            
+                            <!-- Right: Info Table -->
+                            <div class="profile-info-column">
+                                <div class="info-table">
+                                    <div class="info-row">
+                                        <span class="info-label">Họ tên:</span>
+                                        <span class="info-value text-bold" id="candidate-name-val">Nguyệt Phạm</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Tài khoản:</span>
+                                        <span class="info-value text-bold" id="candidate-acc-val">VSTEP01</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Lớp:</span>
+                                        <span class="info-value text-bold text-emerald" id="candidate-class-val">-</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Mã lượt thi:</span>
+                                        <span class="info-value text-bold text-violet" id="candidate-code-val">VSTEPTEST01</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sound & Mic Test Card (Center Bottom) -->
+                    <div class="glass-card device-check-card">
+                        <div class="card-badge"><span class="badge-num">2</span> Kiểm tra âm thanh</div>
+                        
+                        <div class="check-step">
+                            <div class="check-step-header">
+                                <span class="step-lbl">Bước 1:</span>
+                                <span class="step-desc">Nghe đoạn audio mẫu bên dưới.</span>
+                            </div>
+                            
+                            <!-- Custom Audio Player for Sample Test -->
+                            <div class="custom-audio-player sample-player">
+                                <button id="btn-sample-play" class="play-btn">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                                <div class="player-progress-container">
+                                    <div id="sample-progress-bar" class="player-progress-bar"></div>
+                                </div>
+                                <span id="sample-time" class="player-time">0:00 / 0:20</span>
+                                <audio id="sample-audio-element" src="AUDIO/NHẠC TEST FILE NGHE.mp3"></audio> 
+                            </div>
+                        </div>
+
+                        <div class="check-step">
+                            <div class="check-step-header">
+                                <span class="step-lbl">Bước 2:</span>
+                                <span class="step-desc">Đặt mic sát miệng.</span>
+                            </div>
+                        </div>
+
+                        <div class="check-step">
+                            <div class="check-step-header">
+                                <span class="step-lbl">Bước 3:</span>
+                                <span class="step-desc">Bấm "Thu âm" &rarr; sau đó "Nghe lại".</span>
+                            </div>
+                            
+                            <!-- Mic Waveform Visualizer -->
+                            <div class="waveform-container">
+                                <canvas id="waveform-canvas"></canvas>
+                                <div id="mic-recording-status" class="recording-status">
+                                    <span class="recording-dot"></span>
+                                    <span id="recording-status-text">Đang tắt</span>
+                                </div>
+                            </div>
+
+                            <div class="device-controls">
+                                <button id="btn-record-test" class="btn btn-primary ripple">
+                                    <i class="fa-solid fa-microphone"></i> Thu âm
+                                </button>
+                                <button id="btn-play-test" class="btn btn-secondary ripple" disabled>
+                                    <i class="fa-solid fa-play"></i> Nghe lại
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3 (Right): Rules & Start Action Card -->
+                <div class="glass-card rules-card">
+                    <div class="card-badge"><span class="badge-num">3</span> Lưu ý làm bài</div>
+                    
+                    <div class="important-notes">
+                        <div class="note-row">
+                            <i class="fa-solid fa-circle-exclamation text-amber"></i>
+                            <span>Khi hết thời gian mỗi kỹ năng, hệ thống tự động chuyển tiếp.</span>
+                        </div>
+                        <div class="note-row">
+                            <i class="fa-solid fa-circle-exclamation text-amber"></i>
+                            <span>Bấm "TIẾP TỤC" để sang part hoặc kỹ năng kế tiếp.</span>
+                        </div>
+                    </div>
+
+                    <button id="btn-start-exam" class="btn btn-success btn-full btn-large ripple">
+                        NHẬN ĐỀ
+                    </button>
+                    
+                    <div class="back-link">
+                        hoặc <a href="#" id="btn-logout-exam"><i class="fa-solid fa-right-from-bracket"></i> Thoát / Đăng nhập tài khoản khác</a>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="theme-footer">
+                <button id="btn-theme-toggle" class="theme-toggle-btn">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+            </footer>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 2: EXAM PORTAL                      -->
+        <!-- ========================================== -->
+        <div id="exam-screen" class="screen">
+            <header class="exam-header">
+                <div class="exam-candidate-info">
+                    <div class="exam-avatar-wrapper">
+                        <img id="exam-avatar" src="" alt="Candidate Avatar">
+                    </div>
+                    <div class="exam-candidate-details">
+                        <span class="exam-candidate-name" id="exam-candidate-name">Nguyệt Phạm</span>
+                        <span class="exam-candidate-class" id="exam-candidate-class">Lớp: 12A1</span>
+                    </div>
+                </div>
+
+                <div class="exam-timer-capsule" id="timer-capsule">
+                    <i class="fa-solid fa-clock"></i>
+                    <span id="exam-timer-val">47:00</span>
+                </div>
+
+                <div class="exam-actions">
+                    <span class="answered-ratio" id="answered-ratio-lbl">Đã trả lời: 0/35</span>
+                    <button id="btn-submit-exam" class="btn btn-submit ripple">Nộp bài</button>
+                </div>
+            </header>
+
+            <main class="exam-main-content">
+                
+                <!-- Skill Area: Listening -->
+                <div id="listening-area" class="skill-area active">
+                    <div class="skill-instructions">
+                        <h2 id="listening-part-title">LISTENING MOCK TEST 01 - PART 1</h2>
+                        <p id="listening-part-desc">In this part, you will hear EIGHT short announcements or instructions. There is one question for each announcement or instruction. For each question, choose the right answer A, B, C or D.</p>
+                    </div>
+
+                    <!-- Custom Locked Compliance Player -->
+                    <div class="listening-player-card">
+                        <!-- Single Player Container -->
+                        <div id="listening-single-player" style="display: flex; width: 100%; align-items: center; gap: 16px;">
+                            <button id="btn-listening-play" class="listening-play-btn ripple">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <div class="listening-player-info">
+                                <div class="listening-player-title" id="listening-audio-filename">PART 01 - TEST 01.mp3</div>
+                                <div class="listening-player-timeline">
+                                    <div id="listening-progress-bar" class="listening-progress-bar"></div>
+                                </div>
+                            </div>
+                            <span id="listening-player-time" class="listening-player-time">0:00</span>
+                        </div>
+
+                        <!-- Multi Player Container -->
+                        <div id="listening-multi-player" style="display: none; width: 100%; flex-direction: column; gap: 12px;">
+                        </div>
+                        
+                        <div class="listening-compliance-warning">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>* Nhấn Play để bắt đầu bài nghe. Khi đã bắt đầu, không thể tạm dừng. Thí sinh chỉ được nghe một lần.</span>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Choice Questions Container -->
+                    <div class="questions-scroll-pane" id="listening-questions-container">
+                        <!-- Questions will be injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Skill Area: Reading -->
+                <div id="reading-area" class="skill-area">
+                    <div class="split-layout">
+                        <!-- Left Pane: Passage -->
+                        <div class="split-pane-left" id="reading-passage-pane">
+                            <div class="pane-header">
+                                <i class="fa-solid fa-book-open"></i> ĐOẠN VĂN ĐỌC
+                                <button id="btn-highlight-text" class="highlight-tool-btn" title="Bôi đen văn bản để đánh dấu">
+                                    <i class="fa-solid fa-highlighter"></i> Đánh dấu
+                                </button>
+                            </div>
+                            <div class="pane-body passage-content" id="reading-passage-content">
+                                <!-- Reading passage content injected dynamically -->
+                            </div>
+                        </div>
+                        
+                        <!-- Right Pane: Questions -->
+                        <div class="split-pane-right" id="reading-questions-pane">
+                            <div class="pane-header">
+                                <i class="fa-solid fa-circle-question"></i> CÂU HỎI TRẮC NGHIỆM
+                            </div>
+                            <div class="pane-body questions-scroll-pane" id="reading-questions-container">
+                                <!-- Reading questions injected dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Area: Writing -->
+                <div id="writing-area" class="skill-area">
+                    <div class="split-layout">
+                        <!-- Left Pane: Prompt -->
+                        <div class="split-pane-left" id="writing-prompt-pane">
+                            <div class="pane-header">
+                                <i class="fa-solid fa-pen-nib"></i> ĐỀ BÀI VIẾT
+                            </div>
+                            <div class="pane-body prompt-content">
+                                <h3 id="writing-part-title">Writing Task 1</h3>
+                                <div id="writing-part-instructions" class="writing-instructions-text">You should write at least 120 words.</div>
+                                <div id="writing-prompt-content" class="prompt-text-box">
+                                    <!-- Writing prompt injected dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Pane: Editor -->
+                        <div class="split-pane-right" id="writing-editor-pane">
+                            <div class="pane-header">
+                                <i class="fa-solid fa-edit"></i> BÀI LÀM CỦA THÍ SINH
+                                <span class="word-counter"><i class="fa-solid fa-keyboard"></i> Từ: <span id="writing-word-count" class="counter-num">0</span></span>
+                            </div>
+                            <div class="pane-body editor-body">
+                                <textarea id="writing-textarea" placeholder="Nhập bài viết của bạn tại đây..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Area: Speaking -->
+                <div id="speaking-area" class="skill-area">
+                    <div class="speaking-layout">
+                        <div class="speaking-prompt-container">
+                            <div class="pane-header">
+                                <i class="fa-solid fa-microphone-lines"></i> ĐỀ BÀI NÓI
+                            </div>
+                            <div class="pane-body" id="speaking-prompt-content">
+                                <!-- Speaking prompts injected dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="speaking-recording-panel glass-card">
+                            <div class="speaking-timer-ring-container">
+                                <svg class="timer-ring-svg">
+                                    <circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+                                    <circle id="speaking-timer-ring-progress" class="timer-ring-progress" cx="100" cy="100" r="85"></circle>
+                                </svg>
+                                <div class="timer-ring-text">
+                                    <span id="speaking-stage-label" class="stage-label">CHUẨN BỊ</span>
+                                    <span id="speaking-ring-timer-val" class="timer-num">00:00</span>
+                                </div>
+                            </div>
+
+                            <div class="speaking-visualizer-container">
+                                <canvas id="speaking-waveform-canvas"></canvas>
+                                <div id="speaking-mic-status" class="recording-status">
+                                    <span class="recording-dot"></span>
+                                    <span id="speaking-status-text">Đang tắt</span>
+                                </div>
+                            </div>
+
+                            <div class="speaking-actions">
+                                 <button id="btn-speaking-skip-prep" class="btn btn-secondary ripple" style="display: none !important;">
+                                     <i class="fa-solid fa-forward"></i> Bỏ qua chuẩn bị
+                                 </button>
+                                <div id="speaking-record-indicator" class="speaking-record-indicator" style="display:none;">
+                                    <i class="fa-solid fa-microphone-lines animate-pulse"></i> ĐANG THU ÂM HỆ THỐNG
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- Bottom Navigation Panel -->
+            <footer class="exam-footer" id="exam-footer">
+                <div class="navigation-scroll-container">
+                    <div class="navigation-pills">
+                        <!-- Group: Listening -->
+                        <div class="navigation-group" id="nav-group-listening">
+                            <span class="group-label">Listening (47')</span>
+                            <div class="group-pills">
+                                <button class="nav-pill active" data-skill="listening" data-part="1">Part 1</button>
+                                <button class="nav-pill" data-skill="listening" data-part="2">Part 2</button>
+                                <button class="nav-pill" data-skill="listening" data-part="3">Part 3</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Group: Reading -->
+                        <div class="navigation-group" id="nav-group-reading">
+                            <span class="group-label">Reading (60')</span>
+                            <div class="group-pills">
+                                <button class="nav-pill" data-skill="reading" data-part="1">Part 1</button>
+                                <button class="nav-pill" data-skill="reading" data-part="2">Part 2</button>
+                                <button class="nav-pill" data-skill="reading" data-part="3">Part 3</button>
+                                <button class="nav-pill" data-skill="reading" data-part="4">Part 4</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Group: Writing -->
+                        <div class="navigation-group" id="nav-group-writing">
+                            <span class="group-label">Writing (60')</span>
+                            <div class="group-pills">
+                                <button class="nav-pill" data-skill="writing" data-part="1">Part 1</button>
+                                <button class="nav-pill" data-skill="writing" data-part="2">Part 2</button>
+                            </div>
+                        </div>
+
+                        <!-- Group: Speaking -->
+                        <div class="navigation-group" id="nav-group-speaking">
+                            <span class="group-label">Speaking (12')</span>
+                            <div class="group-pills">
+                                <button class="nav-pill" data-skill="speaking" data-part="1">Part 1</button>
+                                <button class="nav-pill" data-skill="speaking" data-part="2">Part 2</button>
+                                <button class="nav-pill" data-skill="speaking" data-part="3">Part 3</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-actions">
+                    <button id="btn-toggle-menu" class="btn btn-secondary-outline ripple" title="Ẩn/Hiện menu thanh điều hướng">
+                        <i class="fa-solid fa-eye-slash"></i> Ẩn menu
+                    </button>
+                    <button id="btn-save-progress" class="btn btn-success ripple">
+                        <i class="fa-solid fa-floppy-disk"></i> Lưu bài
+                    </button>
+                    <button id="btn-next-part" class="btn btn-primary ripple">
+                        Tiếp tục <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 3: EXAM SUMMARY & RESULTS           -->
+        <!-- ========================================== -->
+        <div id="result-screen" class="screen">
+            <header class="prep-header">
+                <div class="logo">
+                    <i class="fa-solid fa-circle-check text-emerald"></i>
+                    <span>KẾT QUẢ BÀI THI</span>
+                </div>
+                <h1>Bài Thi Đã Được Nộp Thành Công</h1>
+                <p class="subtitle">Cảm ơn bạn đã hoàn thành bài thi thử VSTEP 4 kỹ năng</p>
+            </header>
+
+            <div class="result-container glass-card">
+                <!-- User Profile Display -->
+                <div class="result-profile-header">
+                    <div class="result-avatar-wrapper">
+                        <img id="result-avatar" src="" alt="Candidate Avatar">
+                    </div>
+                    <div class="result-meta-info">
+                        <h2 id="result-candidate-name">Nguyệt Phạm</h2>
+                        <p>Mã lượt thi: <strong id="result-exam-code" class="text-violet">VSTEPTEST01</strong> | Lớp: <strong id="result-candidate-class" class="text-emerald">-</strong> | Thời gian nộp: <span id="result-submit-time">11:00 AM</span></p>
+                    </div>
+                </div>
+
+                <div class="result-scores-grid">
+                    <!-- Listening Result -->
+                    <div class="score-card glass-card">
+                        <i class="fa-solid fa-headphones text-violet score-icon"></i>
+                        <h3>Kỹ năng NGHE</h3>
+                        <div class="score-num"><span id="score-listening-val">0</span>/35</div>
+                        <p class="score-descr">Đáp án trắc nghiệm đã được chấm tự động.</p>
+                        <button class="btn btn-secondary-outline btn-full btn-sm btn-view-skill-results" data-target="listening">
+                            Xem chi tiết
+                        </button>
+                    </div>
+
+                    <!-- Reading Result -->
+                    <div class="score-card glass-card">
+                        <i class="fa-solid fa-book-open text-emerald score-icon"></i>
+                        <h3>Kỹ năng ĐỌC</h3>
+                        <div class="score-num"><span id="score-reading-val">0</span>/40</div>
+                        <p class="score-descr">Đáp án trắc nghiệm đã được chấm tự động.</p>
+                        <button class="btn btn-secondary-outline btn-full btn-sm btn-view-skill-results" data-target="reading">
+                            Xem chi tiết
+                        </button>
+                    </div>
+
+                    <!-- Writing Result -->
+                    <div class="score-card glass-card">
+                        <i class="fa-solid fa-pen-nib text-amber score-icon"></i>
+                        <h3>Kỹ năng VIẾT</h3>
+                        <div class="score-num text-amber"><i class="fa-solid fa-clock-rotate-left"></i> Chờ chấm</div>
+                        <p class="score-descr">Đã nộp 2 bài viết (Task 1 & Task 2).</p>
+                        <button class="btn btn-secondary-outline btn-full btn-sm btn-view-skill-results" data-target="writing">
+                            Xem bài làm & Bài mẫu
+                        </button>
+                    </div>
+
+                    <!-- Speaking Result -->
+                    <div class="score-card glass-card">
+                        <i class="fa-solid fa-microphone-lines text-pink score-icon"></i>
+                        <h3>Kỹ năng NÓI</h3>
+                        <div class="score-num text-pink"><i class="fa-solid fa-clock-rotate-left"></i> Chờ chấm</div>
+                        <p class="score-descr">Đã thu âm ghi hình 3 phần nói.</p>
+                        <button class="btn btn-secondary-outline btn-full btn-sm btn-view-skill-results" data-target="speaking">
+                            Nghe lại bài nói & Bài mẫu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Detail View Panel (Toggled by view detail buttons) -->
+                <div id="result-details-panel" class="result-details-panel" style="display:none;">
+                    <div class="panel-header-close">
+                        <h3 id="details-panel-title">Chi tiết kỹ năng Nghe</h3>
+                        <button id="btn-close-details" class="close-details-btn"><i class="fa-solid fa-times"></i></button>
+                    </div>
+                    <div class="details-panel-body" id="details-panel-body-content">
+                        <!-- Dynamic details show here -->
+                    </div>
+                </div>
+
+                <div class="result-action-footer">
+                    <button id="btn-restart-exam" class="btn btn-primary ripple">
+                        <i class="fa-solid fa-rotate-left"></i> Thực hiện lại bài thi
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Load the data file -->
+    <script src="data.js"></script>
+    <!-- Load the app engine script -->
+    <script src="app.js"></script>
+</body>
+</html>
