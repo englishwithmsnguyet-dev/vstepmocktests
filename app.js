@@ -613,10 +613,8 @@ function initExamTimers() {
             }
         } else {
             // Overall speaking timer decrement
-            state.skillTimeRemaining[skill]--;
-            if (state.skillTimeRemaining[skill] <= 0) {
-                state.skillTimeRemaining[skill] = 0;
-                handleSkillTimeout("speaking");
+            if (state.skillTimeRemaining[skill] > 0) {
+                state.skillTimeRemaining[skill]--;
             }
         }
         
