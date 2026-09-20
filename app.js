@@ -422,8 +422,18 @@ DOM.btnThemeToggle.addEventListener("click", () => {
 DOM.btnSamplePlay.addEventListener("click", () => {
     const audio = DOM.sampleAudio;
     if (audio.paused) {
-        audio.play();
-        DOM.btnSamplePlay.innerHTML = "<i class='fa-solid fa-pause'></i>";
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                DOM.btnSamplePlay.innerHTML = "<i class='fa-solid fa-pause'></i>";
+            }).catch(err => {
+                console.error("Audio play error:", err);
+                DOM.btnSamplePlay.innerHTML = "<i class='fa-solid fa-play'></i>";
+                showToast("Không thể phát âm thanh mẫu: " + (err.message || "Lỗi tải file"), "error");
+            });
+        } else {
+            DOM.btnSamplePlay.innerHTML = "<i class='fa-solid fa-pause'></i>";
+        }
     } else {
         audio.pause();
         DOM.btnSamplePlay.innerHTML = "<i class='fa-solid fa-play'></i>";
