@@ -1889,14 +1889,88 @@ function attachLockGateListeners() {
         }
     });
 
+    // Send Login Record to Google Form
+    function sendLoginToGoogleForm(name, className, testCode) {
+        try {
+            const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc7PpUuIwfXofYNKtZ2L_YqhJTlh-Xc7SoBqAgjXxtUla6XZw/formResponse";
+            const ENTRY_ID = "entry.1205151935";
+            const entryText = `${name} - ${className} - ${testCode}`;
+
+            const formData = new FormData();
+            formData.append(ENTRY_ID, entryText);
+
+            fetch(FORM_URL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).catch(e => console.log("Google Form background sync:", e));
+
+            // Hidden iframe fallback
+            const iframe = document.createElement("iframe");
+            iframe.name = "vstep_hidden_form_iframe";
+            iframe.style.display = "none";
+            document.body.appendChild(iframe);
+
+            const form = document.createElement("form");
+            form.action = FORM_URL;
+            form.method = "POST";
+            form.target = "vstep_hidden_form_iframe";
+            form.style.display = "none";
+
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = ENTRY_ID;
+            input.value = entryText;
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+
+            setTimeout(() => {
+                try {
+                    form.remove();
+                    iframe.remove();
+                } catch(e) {}
+            }, 3000);
+        } catch (err) {
+            console.error("Form submit helper error:", err);
+        }
+    }
+
+    function shakeLockCard() {
+        const card = DOM.lockScreen.querySelector(".lock-card");
+        if (card) {
+            card.classList.remove("shake");
+            void card.offsetWidth;
+            card.classList.add("shake");
+            setTimeout(() => card.classList.remove("shake"), 400);
+        }
+    }
+
     // Handle unlocking action
     async function handleUnlock() {
-        const studentName = DOM.lockStudentName.value.trim() || "Thí sinh";
-        const studentClass = DOM.lockStudentClass.value.trim() || "12A1";
+        const studentName = DOM.lockStudentName.value.trim();
+        const studentClass = DOM.lockStudentClass.value.trim();
         const accountId = DOM.lockTestId.value; // e.g. "VSTEP01"
-        const password = DOM.lockPassword.value;
+        const password = DOM.lockPassword.value.trim();
         
         DOM.lockErrorMsg.style.display = "none";
+
+        if (!studentName) {
+            DOM.lockErrorMsg.style.display = "flex";
+            DOM.lockErrorText.textContent = "Vui lòng nhập đầy đủ Họ và tên của bạn!";
+            shakeLockCard();
+            DOM.lockStudentName.focus();
+            return;
+        }
+
+        if (!studentClass) {
+            DOM.lockErrorMsg.style.display = "flex";
+            DOM.lockErrorText.textContent = "Vui lòng nhập Lớp học của bạn!";
+            shakeLockCard();
+            DOM.lockStudentClass.focus();
+            return;
+        }
         
         if (TEST_PASSWORDS[accountId] === password) {
             // Correct password
@@ -1914,6 +1988,9 @@ function attachLockGateListeners() {
             state.candidateClass = studentClass;
             state.candidateAccount = accountId;
             
+            // Send login record to Google Form
+            sendLoginToGoogleForm(studentName, studentClass, accountId);
+            
             // Clear password field
             DOM.lockPassword.value = "";
             
@@ -1929,16 +2006,7 @@ function attachLockGateListeners() {
             // Incorrect password
             DOM.lockErrorMsg.style.display = "flex";
             DOM.lockErrorText.textContent = "Mật khẩu mở khóa không chính xác!";
-            
-            // Shake effect
-            const card = DOM.lockScreen.querySelector(".lock-card");
-            card.classList.add("shake");
-            
-            // Remove shake class after animation finishes
-            setTimeout(() => {
-                card.classList.remove("shake");
-            }, 400);
-            
+            shakeLockCard();
             DOM.lockPassword.select();
             DOM.lockPassword.focus();
         }
