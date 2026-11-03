@@ -17,47 +17,63 @@
     <!-- SCREEN 0: EXAM PASSWORD UNLOCK GATE        -->
     <!-- ========================================== -->
     <div id="lock-screen" class="lock-screen-overlay active">
-        <div class="lock-card glass-card">
-            <div class="lock-header">
-                <div class="lock-icon-circle">
-                    <i class="fa-solid fa-lock"></i>
+        <div class="lock-card login-card-custom">
+            <!-- Miss Nguyet Avatar Brand Ring -->
+            <div class="login-teacher-avatar-wrap">
+                <div class="login-teacher-halo">
+                    <img src="miss_nguyet.jpg" alt="Miss Nguyet" class="login-teacher-avatar">
                 </div>
-                <h2>Mở Khóa Đề Thi VSTEP</h2>
-                <p>Nhập mã đề thi và mật khẩu tương ứng để vào phòng thi</p>
+                <span class="login-teacher-badge">
+                    <i class="fa-solid fa-certificate"></i> LEAD INSTRUCTOR
+                </span>
             </div>
+
+            <div class="login-brand-tag">
+                <i class="fa-solid fa-graduation-cap"></i> Welcome to Miss Nguyet's Class!
+            </div>
+            <div class="login-course-title">VSTEP MOCK TESTS</div>
+            <h2 class="login-title-custom">NHẬP THÔNG TIN<br/>ĐỂ BẮT ĐẦU THI 🚀</h2>
             
             <div class="lock-form">
-                <!-- 1. Tài khoản -->
-                <div class="form-group">
-                    <label for="lock-test-id"><i class="fa-solid fa-user-lock"></i> Tài khoản:</label>
+                <!-- 1. Họ và Tên -->
+                <div class="input-group-custom">
+                    <label for="lock-student-name">
+                        <i class="fa-solid fa-user-pen" style="color: #6366f1;"></i> HỌ VÀ TÊN HỌC VIÊN:
+                    </label>
+                    <input type="text" id="lock-student-name" class="lock-input" placeholder="Nhập họ và tên học viên..." required>
+                </div>
+
+                <!-- 2. Lớp -->
+                <div class="input-group-custom">
+                    <label for="lock-student-class">
+                        <i class="fa-solid fa-chalkboard-user" style="color: #06b6d4;"></i> MÃ LỚP HỌC:
+                    </label>
+                    <input type="text" id="lock-student-class" class="lock-input" placeholder="Nhập mã lớp học... (ví dụ: 12A1)" required>
+                </div>
+
+                <!-- 3. Mã đề thi -->
+                <div class="input-group-custom">
+                    <label for="lock-test-id">
+                        <i class="fa-solid fa-file-signature" style="color: #8b5cf6;"></i> ĐỀ THI:
+                    </label>
                     <select id="lock-test-id" class="lock-select">
-                        <option value="VSTEP01">VSTEP01</option>
-                        <option value="VSTEP02">VSTEP02</option>
-                        <option value="VSTEP03">VSTEP03</option>
+                        <option value="VSTEP01">VSTEP 01</option>
+                        <option value="VSTEP02">VSTEP 02</option>
+                        <option value="VSTEP03">VSTEP 03</option>
                     </select>
                 </div>
 
-                <!-- 2. Mật khẩu -->
-                <div class="form-group">
-                    <label for="lock-password"><i class="fa-solid fa-key"></i> Mật khẩu:</label>
+                <!-- 4. Mật khẩu -->
+                <div class="input-group-custom">
+                    <label for="lock-password">
+                        <i class="fa-solid fa-key" style="color: #f59e0b;"></i> MẬT KHẨU TRUY CẬP:
+                    </label>
                     <div class="password-input-wrapper">
                         <input type="password" id="lock-password" class="lock-input" placeholder="Nhập mật khẩu..." autofocus>
-                        <button type="button" id="btn-toggle-lock-pwd" class="toggle-pwd-btn">
+                        <button type="button" id="btn-toggle-lock-pwd" class="toggle-pwd-btn" title="Hiện/Ẩn mật khẩu">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
-                </div>
-
-                <!-- 3. Họ và Tên -->
-                <div class="form-group">
-                    <label for="lock-student-name"><i class="fa-solid fa-user"></i> Họ và Tên:</label>
-                    <input type="text" id="lock-student-name" class="lock-input" placeholder="Nhập họ và tên của bạn..." value="Nguyệt Phạm" required>
-                </div>
-
-                <!-- 4. Lớp -->
-                <div class="form-group">
-                    <label for="lock-student-class"><i class="fa-solid fa-users"></i> Lớp:</label>
-                    <input type="text" id="lock-student-class" class="lock-input" placeholder="Nhập lớp học của bạn... (ví dụ: 12A1)" value="12A1" required>
                 </div>
                 
                 <div id="lock-error-msg" class="lock-error-msg" style="display:none;">
@@ -65,9 +81,17 @@
                     <span id="lock-error-text">Mật khẩu không chính xác!</span>
                 </div>
                 
-                <button id="btn-unlock-exam" class="btn btn-primary btn-full ripple">
-                    <i class="fa-solid fa-door-open"></i> Vào phòng thi
+                <button id="btn-unlock-exam" class="btn-login-custom">
+                    <span>VÀO PHÒNG THI</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </button>
+
+                <div class="login-footer-signature">
+                    <a href="https://www.facebook.com/nguyetpham28" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-facebook" style="color: #1877f2;"></i>
+                        <span>ENGLISH WITH MISS NGUYET</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

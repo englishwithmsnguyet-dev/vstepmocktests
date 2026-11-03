@@ -2081,3 +2081,280 @@ body.lock-scroll {
     .vstep-mindmap { transform: scale(0.5); margin-bottom: -180px; }
 }
 
+
+/* --- SIGNATURE MISS NGUYET LOGIN CARD STYLES --- */
+.login-card-custom {
+    background: #ffffff !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    border-radius: 28px !important;
+    padding: 34px 28px 24px 28px !important;
+    text-align: center !important;
+    box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25), 0 10px 20px -5px rgba(0, 0, 0, 0.04) !important;
+    box-sizing: border-box !important;
+    border: 1.5px solid rgba(226, 232, 240, 0.95) !important;
+    position: relative !important;
+    animation: loginCardPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+}
+
+body.dark-mode .login-card-custom,
+body.dark-theme .login-card-custom {
+    background: #111827 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+@keyframes loginCardPop {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.login-teacher-avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.15rem;
+    position: relative;
+}
+
+.login-teacher-halo {
+    position: relative;
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #38bdf8 100%);
+    box-shadow: 0 0 28px rgba(99, 102, 241, 0.45), 0 0 50px rgba(236, 72, 153, 0.25);
+    animation: haloPulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes haloPulse {
+    0% {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.35), 0 0 35px rgba(236, 72, 153, 0.2);
+        transform: scale(1);
+    }
+    100% {
+        box-shadow: 0 0 32px rgba(99, 102, 241, 0.6), 0 0 55px rgba(236, 72, 153, 0.4);
+        transform: scale(1.025);
+    }
+}
+
+.login-teacher-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 3.5px solid #ffffff;
+    display: block;
+    box-sizing: border-box;
+}
+
+body.dark-mode .login-teacher-avatar,
+body.dark-theme .login-teacher-avatar {
+    border-color: #1e293b;
+}
+
+.login-teacher-badge {
+    margin-top: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.8rem;
+    border-radius: 9999px;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1.5px solid rgba(99, 102, 241, 0.35);
+    color: #6366f1;
+}
+
+body.dark-mode .login-teacher-badge,
+body.dark-theme .login-teacher-badge {
+    background: rgba(99, 102, 241, 0.25);
+    color: #a5b4fc;
+    border-color: rgba(99, 102, 241, 0.5);
+}
+
+.login-brand-tag {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+}
+
+body.dark-mode .login-brand-tag,
+body.dark-theme .login-brand-tag {
+    color: #c084fc;
+}
+
+.login-course-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #4f46e5;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+}
+
+body.dark-mode .login-course-title,
+body.dark-theme .login-course-title {
+    color: #818cf8;
+}
+
+.login-title-custom {
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.25;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.01em;
+}
+
+body.dark-mode .login-title-custom,
+body.dark-theme .login-title-custom {
+    color: #f8fafc;
+}
+
+.input-group-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: left;
+    margin-bottom: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-group-custom label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #334155;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+body.dark-mode .input-group-custom label,
+body.dark-theme .input-group-custom label {
+    color: #cbd5e1;
+}
+
+.input-group-custom .lock-input,
+.input-group-custom .lock-select {
+    width: 100%;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+body.dark-mode .input-group-custom .lock-input,
+body.dark-mode .input-group-custom .lock-select,
+body.dark-theme .input-group-custom .lock-input,
+body.dark-theme .input-group-custom .lock-select {
+    background: #1e293b;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+.input-group-custom .lock-input:focus,
+.input-group-custom .lock-select:focus {
+    background: #ffffff;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+body.dark-mode .input-group-custom .lock-input:focus,
+body.dark-theme .input-group-custom .lock-input:focus {
+    background: #0f172a;
+    border-color: #818cf8;
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+}
+
+.input-group-custom .lock-input::placeholder {
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.btn-login-custom {
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    padding: 0.95rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 10px 24px -4px rgba(99, 102, 241, 0.45);
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: inherit;
+}
+
+.btn-login-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -4px rgba(99, 102, 241, 0.55);
+}
+
+.login-footer-signature {
+    margin-top: 1.15rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-align: center;
+}
+
+.login-footer-signature a {
+    color: #64748b;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: color 0.2s;
+}
+
+.login-footer-signature a:hover {
+    color: #1877f2;
+}
+
+body.dark-mode .login-footer-signature a,
+body.dark-theme .login-footer-signature a {
+    color: #94a3b8;
+}
+
+body.dark-mode .login-footer-signature a:hover,
+body.dark-theme .login-footer-signature a:hover {
+    color: #38bdf8;
+}
