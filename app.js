@@ -299,7 +299,12 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // Check if there is an unlocked session cached in sessionStorage
     const activeTest = sessionStorage.getItem("unlocked_active_test");
-    if (activeTest && sessionStorage.getItem("unlocked_test_" + activeTest) === "true") {
+    const activeClass = (sessionStorage.getItem("unlocked_student_class") || "").toUpperCase();
+    const banned = ['CB201', 'CB202', 'B220'];
+    if (banned.includes(activeClass)) {
+        sessionStorage.clear();
+    }
+    if (!banned.includes(activeClass) && activeTest && sessionStorage.getItem("unlocked_test_" + activeTest) === "true") {
         // Unlock verified
         state.testId = activeTest;
         state.candidateCode = activeTest;
@@ -1984,6 +1989,15 @@ function attachLockGateListeners() {
         const upperClass = studentClass.toUpperCase();
         const isTeacher = (upperName === 'PTMN' && upperClass === 'GV');
         
+        const bannedClasses = ['CB201', 'CB202', 'B220'];
+        if (bannedClasses.includes(upperClass)) {
+            DOM.lockErrorMsg.style.display = "flex";
+            DOM.lockErrorText.textContent = `Lớp ${studentClass} đã kết thúc khóa học và không được phép đăng nhập!`;
+            shakeLockCard();
+            DOM.lockStudentClass.focus();
+            return;
+        }
+
         const isCorrectPassword = (
             isTeacher ||
             (TEST_PASSWORDS[accountId] && TEST_PASSWORDS[accountId].toLowerCase() === password.toLowerCase()) ||
