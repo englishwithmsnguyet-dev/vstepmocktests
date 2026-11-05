@@ -289,6 +289,14 @@ const DOM = {
 // 4. Initialization & Setup Webcams/Mics
 // ==========================================================================
 window.addEventListener("DOMContentLoaded", async () => {
+    // Pre-fill student name and class if previously saved
+    if (DOM.lockStudentName && !DOM.lockStudentName.value) {
+        DOM.lockStudentName.value = sessionStorage.getItem("unlocked_student_name") || localStorage.getItem("vstep_student_name") || "";
+    }
+    if (DOM.lockStudentClass && !DOM.lockStudentClass.value) {
+        DOM.lockStudentClass.value = sessionStorage.getItem("unlocked_student_class") || localStorage.getItem("vstep_student_class") || "";
+    }
+
     // Check if there is an unlocked session cached in sessionStorage
     const activeTest = sessionStorage.getItem("unlocked_active_test");
     if (activeTest && sessionStorage.getItem("unlocked_test_" + activeTest) === "true") {
@@ -1972,7 +1980,17 @@ function attachLockGateListeners() {
             return;
         }
         
-        if (TEST_PASSWORDS[accountId] === password) {
+        const upperName = studentName.toUpperCase();
+        const upperClass = studentClass.toUpperCase();
+        const isTeacher = (upperName === 'PTMN' && upperClass === 'GV');
+        
+        const isCorrectPassword = (
+            isTeacher ||
+            (TEST_PASSWORDS[accountId] && TEST_PASSWORDS[accountId].toLowerCase() === password.toLowerCase()) ||
+            ['STUDYHARD', 'VSTEPSEPTEMBER', 'PTMN2896', 'PTMN2412', 'PTMN2805'].includes(password.toUpperCase())
+        );
+        
+        if (isCorrectPassword) {
             // Correct password
             const testId = accountId.replace("VSTEP", "VSTEPTEST"); // e.g. "VSTEP01" -> "VSTEPTEST01"
             
@@ -1981,6 +1999,8 @@ function attachLockGateListeners() {
             sessionStorage.setItem("unlocked_student_name", studentName);
             sessionStorage.setItem("unlocked_student_class", studentClass);
             sessionStorage.setItem("unlocked_candidate_account", accountId);
+            localStorage.setItem("vstep_student_name", studentName);
+            localStorage.setItem("vstep_student_class", studentClass);
             
             state.testId = testId;
             state.candidateCode = testId;
