@@ -591,6 +591,10 @@ function stopDeviceVisualizer() {
 
 // Click NHẬN ĐỀ
 DOM.btnStartExam.addEventListener("click", () => {
+    if (typeof VstepExamRoom !== 'undefined' && !VstepExamRoom.canStudentStartExam('vstep')) {
+        alert("⛔ PHÒNG THI VSTEP TỔNG HỢP HIỆN ĐANG ĐÓNG!\n\nVui lòng chờ Giáo viên (Cô Nguyệt) mở phòng để vào làm bài.");
+        return;
+    }
     // 1. Release prep devices
     stopWebcam();
     stopDeviceVisualizer();
