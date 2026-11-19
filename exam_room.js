@@ -230,6 +230,200 @@
                 cursor: pointer;
                 outline: none;
             }
+            /* Multiselect Checkbox Dropdown */
+            .teacher-multiselect-container {
+                position: relative;
+                display: inline-block;
+            }
+            .teacher-multiselect-toggle {
+                background: rgba(15, 23, 42, 0.85);
+                color: #ffffff;
+                border: 1px solid rgba(148, 163, 184, 0.4);
+                padding: 5px 12px;
+                border-radius: 8px;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                outline: none;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .teacher-multiselect-toggle:hover {
+                border-color: #38bdf8;
+                background: rgba(15, 23, 42, 0.95);
+            }
+            .teacher-dropdown-arrow {
+                font-size: 10px;
+                margin-left: 3px;
+                transition: transform 0.2s ease;
+                color: #94a3b8;
+            }
+            .teacher-dropdown-menu {
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 0;
+                width: 320px;
+                background: #0f172a;
+                border: 1.5px solid rgba(56, 189, 248, 0.5);
+                border-radius: 12px;
+                box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.2);
+                padding: 12px;
+                z-index: 999999999;
+                animation: teacherDropIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            @keyframes teacherDropIn {
+                from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+                to { opacity: 1; transform: translateY(0) scale(1); }
+            }
+            .teacher-dropdown-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                padding-bottom: 6px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .teacher-dropdown-title {
+                font-size: 11px;
+                font-weight: 800;
+                color: #38bdf8;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            .teacher-dropdown-close {
+                background: transparent;
+                border: none;
+                color: #94a3b8;
+                font-size: 18px;
+                line-height: 1;
+                cursor: pointer;
+                padding: 0 4px;
+                border-radius: 4px;
+            }
+            .teacher-dropdown-close:hover {
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.1);
+            }
+            .teacher-dropdown-actions {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            .btn-quick-select {
+                flex: 1;
+                background: rgba(255, 255, 255, 0.08);
+                color: #e2e8f0;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 6px;
+                padding: 5px 8px;
+                font-size: 11px;
+                font-weight: 700;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                transition: all 0.15s ease;
+            }
+            .btn-quick-select:hover {
+                background: rgba(56, 189, 248, 0.2);
+                border-color: #38bdf8;
+                color: #ffffff;
+            }
+            .teacher-checkbox-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+                max-height: 220px;
+                overflow-y: auto;
+                padding-right: 4px;
+            }
+            .teacher-checkbox-grid::-webkit-scrollbar {
+                width: 5px;
+            }
+            .teacher-checkbox-grid::-webkit-scrollbar-thumb {
+                background: rgba(148, 163, 184, 0.3);
+                border-radius: 4px;
+            }
+            .teacher-test-checkbox-label {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 8px;
+                background: rgba(30, 41, 59, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 11.5px;
+                font-weight: 600;
+                color: #cbd5e1;
+                user-select: none;
+                transition: all 0.15s ease;
+            }
+            .teacher-test-checkbox-label:hover {
+                background: rgba(56, 189, 248, 0.15);
+                border-color: rgba(56, 189, 248, 0.4);
+                color: #ffffff;
+            }
+            .teacher-test-checkbox-label.checked {
+                background: rgba(14, 165, 233, 0.25);
+                border-color: #0284c7;
+                color: #38bdf8;
+            }
+            .teacher-test-checkbox {
+                display: none;
+            }
+            .custom-check-box {
+                width: 14px;
+                height: 14px;
+                border-radius: 3px;
+                border: 1px solid #64748b;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 9px;
+                color: transparent;
+                background: rgba(15, 23, 42, 0.6);
+                flex-shrink: 0;
+                transition: all 0.15s ease;
+            }
+            .teacher-test-checkbox-label.checked .custom-check-box {
+                background: #0284c7;
+                border-color: #38bdf8;
+                color: #ffffff;
+            }
+            .test-label-text {
+                font-size: 11.5px;
+            }
+            .teacher-dropdown-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 10px;
+                padding-top: 8px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 11px;
+                color: #94a3b8;
+            }
+            .btn-done-select {
+                background: linear-gradient(135deg, #0284c7, #0369a1);
+                color: #fff;
+                border: none;
+                padding: 4px 12px;
+                border-radius: 6px;
+                font-weight: 700;
+                font-size: 11px;
+                cursor: pointer;
+                transition: all 0.15s ease;
+            }
+            .btn-done-select:hover {
+                background: linear-gradient(135deg, #0369a1, #075985);
+            }
             .teacher-btn-action {
                 border: none;
                 border-radius: 8px;
@@ -397,6 +591,66 @@
         document.head.appendChild(style);
     }
 
+    // --- Test Selection Helpers ---
+    function parseAllowedTests(allowedVal) {
+        if (!allowedVal || allowedVal === "all") return "all";
+        if (allowedVal === "none" || allowedVal === "") return [];
+        if (Array.isArray(allowedVal)) {
+            return allowedVal.map(n => parseInt(n, 10)).filter(n => !isNaN(n));
+        }
+        return String(allowedVal)
+            .split(",")
+            .map(s => parseInt(s.trim(), 10))
+            .filter(n => !isNaN(n));
+    }
+
+    function isTestNumberAllowed(testNum, allowedVal) {
+        if (!testNum || testNum <= 0) return true; // Homepage or general page
+        const parsed = parseAllowedTests(allowedVal);
+        if (parsed === "all") return true;
+        if (Array.isArray(parsed)) {
+            return parsed.includes(testNum);
+        }
+        return true;
+    }
+
+    function isTestChecked(n, allowedVal) {
+        const parsed = parseAllowedTests(allowedVal);
+        if (parsed === "all") return true;
+        if (Array.isArray(parsed)) {
+            return parsed.includes(n);
+        }
+        return false;
+    }
+
+    function getDisplayTextForAllowed(allowedVal) {
+        const parsed = parseAllowedTests(allowedVal);
+        if (parsed === "all") return "Mở tất cả đề thi";
+        if (Array.isArray(parsed)) {
+            if (parsed.length === 0) return "Khóa tất cả đề";
+            if (parsed.length === 17) return "Mở tất cả đề thi";
+            if (parsed.length === 1) {
+                const p = parsed[0] < 10 ? '0' + parsed[0] : parsed[0];
+                return `Chỉ mở Đề ${p}`;
+            }
+            if (parsed.length <= 3) {
+                const formatted = parsed.map(n => n < 10 ? '0' + n : n).join(', ');
+                return `Mở Đề: ${formatted}`;
+            }
+            return `Mở ${parsed.length} đề (Đề ${parsed.slice(0, 2).map(n => n < 10 ? '0' + n : n).join(', ')}...)`;
+        }
+        return "Mở tất cả đề thi";
+    }
+
+    function getSelectedSummaryText(allowedVal) {
+        const parsed = parseAllowedTests(allowedVal);
+        if (parsed === "all") return "Đang chọn: 17/17 đề (Tất cả)";
+        if (Array.isArray(parsed)) {
+            return `Đang chọn: ${parsed.length}/17 đề`;
+        }
+        return "Đang chọn: Tất cả";
+    }
+
     // --- Render Teacher Floating Control Bar ---
     function renderTeacherBar() {
         const userInfo = getCurrentUserInfo();
@@ -431,15 +685,57 @@
                 </div>
 
                 <div class="teacher-bar-center">
-                    <label class="teacher-select-label" for="teacher-select-test">
+                    <label class="teacher-select-label">
                         <i class="fa-solid fa-layer-group"></i> Đề:
                     </label>
-                    <select id="teacher-select-test" class="teacher-test-select" onchange="VstepExamRoom.onTeacherChangeTest(this.value)">
-                        <option value="all" ${allowed === 'all' ? 'selected' : ''}>Mở tất cả đề thi</option>
-                        ${[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(n => `
-                            <option value="${n}" ${String(allowed) === String(n) ? 'selected' : ''}>Chỉ mở Đề ${n < 10 ? '0' + n : n}</option>
-                        `).join('')}
-                    </select>
+                    <div class="teacher-multiselect-container" id="teacher-test-dropdown-container">
+                        <button type="button" class="teacher-multiselect-toggle" id="teacher-test-toggle" onclick="VstepExamRoom.toggleTestDropdown(event)" title="Nhấn để chọn các đề được mở thi">
+                            <i class="fa-solid fa-list-check" style="color: #38bdf8;"></i>
+                            <span class="teacher-multiselect-text" id="teacher-multiselect-text">${getDisplayTextForAllowed(allowed)}</span>
+                            <i class="fa-solid fa-chevron-down teacher-dropdown-arrow" id="teacher-dropdown-arrow"></i>
+                        </button>
+
+                        <div class="teacher-dropdown-menu" id="teacher-test-dropdown-menu" style="display: none;" onclick="event.stopPropagation()">
+                            <div class="teacher-dropdown-header">
+                                <span class="teacher-dropdown-title">
+                                    <i class="fa-solid fa-filter"></i> CHỌN ĐỀ ĐƯỢC MỞ THI:
+                                </span>
+                                <button type="button" class="teacher-dropdown-close" onclick="VstepExamRoom.closeTestDropdown(event)">&times;</button>
+                            </div>
+
+                            <div class="teacher-dropdown-actions">
+                                <button type="button" class="btn-quick-select" onclick="VstepExamRoom.selectAllTests(true)">
+                                    <i class="fa-solid fa-check-double"></i> Mở tất cả
+                                </button>
+                                <button type="button" class="btn-quick-select" onclick="VstepExamRoom.selectAllTests(false)">
+                                    <i class="fa-solid fa-xmark"></i> Bỏ chọn hết
+                                </button>
+                            </div>
+
+                            <div class="teacher-checkbox-grid">
+                                ${[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(n => {
+                                    const isChk = isTestChecked(n, allowed);
+                                    const padNum = n < 10 ? '0' + n : n;
+                                    return `
+                                        <label class="teacher-test-checkbox-label ${isChk ? 'checked' : ''}" onclick="event.stopPropagation()">
+                                            <input type="checkbox" class="teacher-test-checkbox" value="${n}" ${isChk ? 'checked' : ''} onchange="VstepExamRoom.onCheckboxChange(this)">
+                                            <span class="custom-check-box"><i class="fa-solid fa-check"></i></span>
+                                            <span class="test-label-text">Đề ${padNum}</span>
+                                        </label>
+                                    `;
+                                }).join('')}
+                            </div>
+
+                            <div class="teacher-dropdown-footer">
+                                <span class="teacher-selected-summary" id="teacher-selected-summary">
+                                    ${getSelectedSummaryText(allowed)}
+                                </span>
+                                <button type="button" class="btn-done-select" onclick="VstepExamRoom.closeTestDropdown(event)">
+                                    <i class="fa-solid fa-check"></i> Xong
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <button type="button" class="teacher-btn-action btn-toggle-room ${isOpen ? 'open' : 'closed'}" onclick="VstepExamRoom.toggleCurrentRoom()">
                         <i class="fa-solid ${isOpen ? 'fa-lock' : 'fa-lock-open'}"></i>
@@ -492,11 +788,16 @@
         if (!isOpen) {
             isThisTestAllowed = false;
             blockedReason = `Phòng thi ${currentSkill.title} hiện đang ĐÓNG. Vui lòng chờ Giáo viên (Cô Nguyệt) mở phòng để vào làm bài!`;
-        } else if (allowed !== "all") {
-            if (currentTest > 0 && String(currentTest) !== String(allowed)) {
-                isThisTestAllowed = false;
-                const paddedAllowed = parseInt(allowed, 10) < 10 ? '0' + allowed : allowed;
-                blockedReason = `Hôm nay lớp chỉ thi ĐỀ ${paddedAllowed}. Đề thi này hiện chưa được mở!`;
+        } else if (!isTestNumberAllowed(currentTest, allowed)) {
+            isThisTestAllowed = false;
+            const parsed = parseAllowedTests(allowed);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                const formatted = parsed.map(n => n < 10 ? '0' + n : String(n)).join(', ');
+                blockedReason = `Hôm nay lớp chỉ mở các ĐỀ: ${formatted}. Đề thi này hiện chưa được mở!`;
+            } else if (Array.isArray(parsed) && parsed.length === 0) {
+                blockedReason = `Phòng thi hiện đang tạm khóa tất cả các đề. Vui lòng chờ Giáo viên mở đề!`;
+            } else {
+                blockedReason = `Đề thi này hiện chưa được mở!`;
             }
         }
 
@@ -727,7 +1028,7 @@
             const currentTest = getCurrentTestNumber();
 
             if (room.isOpen === false) return false;
-            if (room.allowedTest && room.allowedTest !== "all" && currentTest > 0 && String(currentTest) !== String(room.allowedTest)) {
+            if (!isTestNumberAllowed(currentTest, room.allowedTest)) {
                 return false;
             }
             return true;
@@ -759,6 +1060,79 @@
                 : `🔴 ĐÃ KHÓA: ${targetCfg.title}!`);
         },
 
+        toggleTestDropdown(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById("teacher-test-dropdown-menu");
+            const arrow = document.getElementById("teacher-dropdown-arrow");
+            if (!menu) return;
+            const isVisible = menu.style.display === "block";
+            menu.style.display = isVisible ? "none" : "block";
+            if (arrow) {
+                arrow.style.transform = isVisible ? "rotate(0deg)" : "rotate(180deg)";
+            }
+        },
+
+        closeTestDropdown(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById("teacher-test-dropdown-menu");
+            const arrow = document.getElementById("teacher-dropdown-arrow");
+            if (menu) menu.style.display = "none";
+            if (arrow) arrow.style.transform = "rotate(0deg)";
+        },
+
+        selectAllTests(shouldSelectAll) {
+            const checkboxes = document.querySelectorAll(".teacher-test-checkbox");
+            checkboxes.forEach(cb => {
+                cb.checked = shouldSelectAll;
+                const parentLabel = cb.closest(".teacher-test-checkbox-label");
+                if (parentLabel) parentLabel.classList.toggle("checked", shouldSelectAll);
+            });
+            this.syncSelectionFromDOM();
+        },
+
+        onCheckboxChange(cb) {
+            const parentLabel = cb.closest(".teacher-test-checkbox-label");
+            if (parentLabel) parentLabel.classList.toggle("checked", cb.checked);
+            this.syncSelectionFromDOM();
+        },
+
+        syncSelectionFromDOM() {
+            const checkboxes = Array.from(document.querySelectorAll(".teacher-test-checkbox"));
+            const selectedNums = checkboxes
+                .filter(cb => cb.checked)
+                .map(cb => parseInt(cb.value, 10))
+                .sort((a, b) => a - b);
+            
+            let allowedVal;
+            let msg;
+            if (selectedNums.length === checkboxes.length) {
+                allowedVal = "all";
+                msg = "Mở tất cả đề thi";
+            } else if (selectedNums.length === 0) {
+                allowedVal = "none";
+                msg = "Khóa tất cả đề thi";
+            } else if (selectedNums.length === 1) {
+                allowedVal = String(selectedNums[0]);
+                msg = `Chỉ mở Đề ${selectedNums[0] < 10 ? '0' + selectedNums[0] : selectedNums[0]}`;
+            } else {
+                allowedVal = selectedNums.join(",");
+                const formatted = selectedNums.map(n => n < 10 ? '0' + n : n).join(', ');
+                msg = `Mở các Đề: ${formatted}`;
+            }
+
+            // Update label and summary immediately
+            const labelEl = document.getElementById("teacher-multiselect-text");
+            if (labelEl) labelEl.textContent = getDisplayTextForAllowed(allowedVal);
+            const summaryEl = document.getElementById("teacher-selected-summary");
+            if (summaryEl) summaryEl.textContent = getSelectedSummaryText(allowedVal);
+
+            // Save to Firebase immediately
+            updateRoomInFirebase(currentSkillKey, {
+                allowedTest: allowedVal,
+                message: msg
+            });
+        },
+
         onTeacherChangeTest(val) {
             updateRoomInFirebase(currentSkillKey, {
                 allowedTest: val,
@@ -782,6 +1156,19 @@
             applyRoomState();
         }
     };
+
+    // Close test multiselect dropdown when clicking outside
+    document.addEventListener("click", function(e) {
+        const container = document.getElementById("teacher-test-dropdown-container");
+        if (container && !container.contains(e.target)) {
+            const menu = document.getElementById("teacher-test-dropdown-menu");
+            const arrow = document.getElementById("teacher-dropdown-arrow");
+            if (menu && menu.style.display === "block") {
+                menu.style.display = "none";
+                if (arrow) arrow.style.transform = "rotate(0deg)";
+            }
+        }
+    });
 
     // Intercept clicks on start buttons if room is closed
     document.addEventListener("click", function(e) {
