@@ -57,11 +57,11 @@
         const title = (document.title || "").toLowerCase();
         const combined = path + " " + title;
 
+        if (combined.includes("writing") || combined.includes("viết")) return "writing";
         if (combined.includes("speaking") || combined.includes("nói")) return "speaking";
         if (combined.includes("reading") || combined.includes("đọc")) return "reading";
         if (combined.includes("listening") || combined.includes("nghe")) return "listening";
-        if (combined.includes("mocktests") || combined.includes("tổng hợp")) return "vstep";
-        if (combined.includes("writing") || combined.includes("viết")) return "writing";
+        if (combined.includes("mocktests") || combined.includes("tổng hợp") || combined.includes("vstep")) return "vstep";
         return "writing";
     }
 
