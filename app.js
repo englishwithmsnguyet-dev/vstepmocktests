@@ -1988,6 +1988,16 @@ function attachLockGateListeners() {
             DOM.lockStudentClass.focus();
             return;
         }
+
+        const normNoTone = studentName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "d");
+        const normClassNoTone = studentClass.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d");
+        if (normNoTone.includes("gia tue") || normNoTone.replace(/\s+/g, "").includes("giatue") || normClassNoTone.trim() === "b2") {
+            DOM.lockErrorMsg.style.display = "flex";
+            DOM.lockErrorText.textContent = 'Tài khoản học viên "Gia Tuệ" hiện đã bị KHÓA! Vui lòng liên hệ Giáo viên (Cô Nguyệt).';
+            shakeLockCard();
+            DOM.lockStudentName.focus();
+            return;
+        }
         
         const upperName = studentName.toUpperCase();
         const upperClass = studentClass.toUpperCase();
