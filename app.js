@@ -1,3 +1,60 @@
+
+const VALID_STUDENTS = {
+    "CB210": [
+        "Nguyễn Võ Thành Đạt", "Lê Huỳnh Thanh Duy", "Nguyễn Cao Kỳ Duyên", "Đào Ngọc Hân", 
+        "Trần Văn Hữu", "Trần Văn Kim Khoa", "Nguyễn Thanh Nâng", "Huỳnh Kỳ Nguyên", 
+        "Võ Thị Kim Nguyên", "Võ Hùng Sanh", "Tiền Thị Thanh Thảo", "Trần Thị Thanh Thảo", 
+        "Đặng Thị Kim Thoa", "Trần Thị Tiên Tiên", "Lê Kim Tuyền"
+    ],
+    "CB211": [
+        "Hồ Anh Quân", "Lê Thành Nghiệp", "Lê Khánh Lâm", "Huỳnh Thị Ngọc Thắm", 
+        "Mai Trần Xuân Mai", "Lê Thị Uyển Nhi", "Nguyễn Thụy Thanh Trúc"
+    ],
+    "CB213": [
+        "Nguyễn Quốc Anh", "Hoàng Hợp Minh Châu", "Đặng Châu Gia Huy", "Trần Minh Tuệ Mẩn", 
+        "Trần Minh Tuệẫn", "Đặng Thị Trúc Măng", "Trương Thị Kha My", "Ngô Diễm My", 
+        "Chiêm Chúc Ngân", "Huỳnh Thị Yến Nhi", "Phạm Nguyễn Tâm Như", "Phạm Nhựt Tiến", 
+        "Phạm Nhật Tiến", "Lê Thị Tú Trinh", "Trần Ngọc Vinh"
+    ],
+    "ONB103": [
+        "Nguyễn Thị Duy", "Phạm Trần Mỹ Hân", "Trịnh Thị Thu Hiền", "Nguyễn Hoàng Kha", 
+        "Phạm Thị Út Lụa", "Phạm Thị Út Lua", "Lê Huỳnh Diễm My", "Nguyễn Thị Ngọc Mỹ", 
+        "Huỳnh Thị Kim Ngân", "Trần Thị Kim Ngân", "Nguyễn Thị Tiểu Phụng", "Trần Yến Phụng", 
+        "Phạm Ngọc Thạch", "Cao Thị Thu Trang", "Nguyễn Thị Thanh Tuyền", "Trần Phạm Phương Uyên", 
+        "Trần Ngô Mỹ Vy"
+    ],
+    "B212": [
+        "Nguyễn Duy Hồng Anh", "Nguyễn Ngọc Minh Anh", "Nguyễn Lê Mỹ Hân", "Nguyễn Hồng Minh Huy", 
+        "Nguyễn Quốc Khải", "Đoàn Nguyễn Đình Khang", "Lê Nguyễn Gia Khánh", "Nguyễn Hữu Khánh", 
+        "Hồ Thị Ngọc Lan", "Trần Thị Hồng Lỉnh", "Võ Thị Triệu Minh", "Hứa Đình Nghi", 
+        "Võ Thị Bảo Ngọc", "Lê Tiến Phát", "Nguyễn Kim Tiền", "Lê Thị Bảo Trân", 
+        "Võ Thị Diễm Trinh", "Nguyễn Tấn Trung", "Nguyễn Tiến Trung", "Trần Thị Ánh Tuyết", 
+        "Đặng Nguyễn Khánh Uyên", "Nguyễn Thị Chúc Yến"
+    ],
+    "CB206": [
+        "Văn Như Anh", "Nguyễn Thị Vân Anh", "Nguyễn Thị Hồng Duyên", "Nguyễn Thị Thúy Hồng",
+        "Trương Ngọc Nhi", "Nguyễn Phạm Như Quỳnh", "Trần Lê Quỳnh", "Thị Mỹ Tâm", "Ông Lê Thành",
+        "Trần Nguyễn Thanh Thảo", "Phan Nhật Thiện", "Nguyễn Mỹ Tiên", "Trần Thị Cẩm Tiên",
+        "Võ Trần Bảo Tính", "Trương Thanh Toàn", "Phạm Ngọc Trâm", "Nguyễn Võ Bảo Trân"
+    ],
+    "CB219": [
+        "Lưu Thị Vân Anh", "Nguyễn Tuấn Anh", "Trần Thị Huỳnh Duy", "Duy Thị Quỳnh Hân",
+        "Trần Thị Xuân Hoa", "Nguyễn Phạm Khang", "Đặng Văn Khánh", "Chim Nhật Luân",
+        "Lư Vĩnh Phúc", "Nguyễn Chí Thiện", "Trần Thị Ngọc Thơ", "Huỳnh Yến Trang",
+        "Thị Thu Trinh", "Nguyễn Thị Mỹ Xuyên", "Nguyễn Như Ý"
+    ],
+    "CB220": [
+        "Lý Quốc Dũng", "Phan Minh Khôi", "Huỳnh Văn My", "Mai Thúy Ngân",
+        "Võ Huỳnh Thảo Nguyên", "Đặng Dũ Nguyên", "Nguyễn Gia Nguyễn", "Trương Thị Thảo Như",
+        "Huỳnh Nhật Phát", "Nguyễn Huỳnh Thanh Sơn", "Thái Nhựt Thịnh", "Trần Nguyễn Huỳnh Trâm",
+        "Nguyễn Thị Tường Vi", "Lê Tường Vy", "Bùi Ngọc Như Ý"
+    ]
+};
+
+function normalizeVietnameseName(str) {
+    if (!str) return '';
+    return str.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/\s+/g, ' ');
+}
 /* ==========================================================================
    VSTEP 4-SKILLS INTERACTIVE PORTAL - CORE SCRIPT
    Logic: Webcam capture, Audio Recording, Dynamic Timers, Visualizers
@@ -2018,6 +2075,26 @@ function attachLockGateListeners() {
             ['STUDYHARD', 'VSTEPSEPTEMBER', 'PTMN2896', 'PTMN2412', 'PTMN2805'].includes(password.toUpperCase())
         );
         
+        if (!isTeacher) {
+            const roster = VALID_STUDENTS[upperClass] || [];
+            if (roster.length === 0) {
+                DOM.lockErrorMsg.style.display = "flex";
+                DOM.lockErrorText.textContent = `Lớp "${studentClass}" không hợp lệ. Vui lòng kiểm tra lại mã lớp!`;
+                shakeLockCard();
+                DOM.lockStudentClass.focus();
+                return;
+            }
+            const normInp = normalizeVietnameseName(studentName);
+            const matchedStudent = roster.find(st => normalizeVietnameseName(st) === normInp);
+            if (!matchedStudent) {
+                DOM.lockErrorMsg.style.display = "flex";
+                DOM.lockErrorText.textContent = `Họ và tên "${studentName}" không có trong danh sách lớp ${studentClass}! Vui lòng kiểm tra lại họ và tên có dấu.`;
+                shakeLockCard();
+                DOM.lockStudentName.focus();
+                return;
+            }
+        }
+
         if (isCorrectPassword) {
             // Correct password
             const testId = accountId.replace("VSTEP", "VSTEPTEST"); // e.g. "VSTEP01" -> "VSTEPTEST01"
